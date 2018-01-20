@@ -11,17 +11,22 @@
     <button type="submit">Get Info</button>
   </form>
 
+  <h1 id="result"></h1>
+
   <script>
     const electron = require('electron'); //this is weird, electrons browser carries more capabilities than Chromes in that it has access to nodejs modules, allowing us to use native modules such as fs/crypto as well as require in external libraries
 
     const { ipcRenderer } = electron; //used to communicate from this document back to our electron process which is hosting this window. IPC = inter-process communication system
 
-    document.querySelector('form').addEventListene('submit', (event)=> {
+    document.querySelector('form').addEventListener('submit', (event)=> {
       event.preventDefault()
       const { path } = document.querySelector('input').files[0];
       
-      ipcRenderer.send('videoSubmit', path);
+      ipcRenderer.send('videoSubmit', path); //sends path variable to electron process
+    });
 
-    })
+    ipcRenderer.on('videoMetadata', (event, duration) => { //tells window to listen for info sent by electron process
+      document.querySelector('#result').innerHTML = `Video is ${duration} seconds`;
+    });
   </script>
 </body>
