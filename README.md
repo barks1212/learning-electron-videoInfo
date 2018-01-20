@@ -1,14 +1,10 @@
 # learning-electron-videoInfo
 
-To run Electron app - npm run electron
+To run Electron app: npm run electron
 
-Requires ffmpeg - to check if already installed (on OSX) run:
+Requires ffmpeg - to check if already installed (on OSX) run: which ffmpeg
 
-which ffmpeg
-
-Should receive "/usr/local/bin/ffmpeg", if not then run:
-
-brew install ffmpeg (requires homebrew)
+Should receive "/usr/local/bin/ffmpeg", if not then run: brew install ffmpeg (requires homebrew)
 
 
 First basic Electron app which sets up communication between a native browser window and an electron process in order to transfer information, in this case video metadata, between processes.
